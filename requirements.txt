@@ -1,0 +1,5 @@
+# Connecting python generated data to a PostgreSQL database
+psycopg2
+
+# for uploading csv files to the database
+azure-storage-file-datalake

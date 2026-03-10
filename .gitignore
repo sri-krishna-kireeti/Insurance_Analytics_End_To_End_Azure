@@ -1,0 +1,6 @@
+# Local development files
+Data_Generation_local
+
+# .env file for environment variables
+data_simulations\csv_file_data\.env
+data_simulations\pg_connections\.env
