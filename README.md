@@ -1,4 +1,9 @@
 # End-to-End Azure Data Engineering Pipeline  
+Check out my 3 parts blog for in detail explanation:
+Link: https://medium.com/@ganeshnasrikrishna/building-a-metadata-driven-data-pipeline-on-azure-adf-databricks-end-to-end-9b3789fd1e35
+
+---
+
 ### Azure Data Factory + Azure Data Lake + Azure Databricks (Medallion Architecture)
 
 This project demonstrates how to build a **scalable end-to-end data engineering pipeline on Azure** using **Azure Data Factory, Azure Data Lake Storage Gen2, and Azure Databricks**.
