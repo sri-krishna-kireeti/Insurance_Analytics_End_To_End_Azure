@@ -1,0 +1,202 @@
+CLAIMS TABLE:
+
+CREATE TABLE claims (
+    claim_id INT PRIMARY KEY,
+    claim_number VARCHAR(20) UNIQUE,
+    customer_policy_id INT,
+    hospital_id INT,
+
+    claim_date DATE,
+    hospitalization_date DATE,
+    discharge_date DATE,
+
+    diagnosis_code VARCHAR(10),
+    diagnosis_description TEXT,
+    room_type VARCHAR(20),
+
+    total_bill_amount NUMERIC(12,2),
+    claimed_amount NUMERIC(12,2),
+    approved_amount NUMERIC(12,2),
+    rejected_amount NUMERIC(12,2),
+
+    claim_status VARCHAR(20),
+    rejection_reason TEXT,
+
+    settlement_date DATE,
+    processing_days INT,
+
+    created_at TIMESTAMP
+);
+
+
+
+CUSTOMER MASTER TABLE:
+
+CREATE TABLE customer_master (
+    customer_id BIGINT PRIMARY KEY,
+    customer_external_ref UUID UNIQUE,
+    agent_id INT,
+
+    first_name VARCHAR(100),
+    middle_name VARCHAR(100),
+    last_name VARCHAR(100),
+
+    date_of_birth DATE,
+    gender VARCHAR(20),
+    marital_status VARCHAR(20),
+
+    email VARCHAR(255),
+    phone_number VARCHAR(15),
+
+    address TEXT,
+    city VARCHAR(100),
+    state VARCHAR(100),
+    pincode VARCHAR(10),
+    country VARCHAR(50),
+
+    occupation VARCHAR(100),
+    employment_type VARCHAR(50),
+    annual_income NUMERIC(15,2),
+    credit_score INT,
+
+    height_cm NUMERIC(5,2),
+    weight_kg NUMERIC(5,2),
+
+    smoker_flag BOOLEAN,
+    alcohol_consumption_level VARCHAR(20),
+    physical_activity_level VARCHAR(20),
+
+    pre_existing_conditions VARCHAR(100),
+    chronic_disease_flag BOOLEAN,
+    family_medical_history_flag BOOLEAN,
+
+    stress_level_index INT,
+    sleep_hours_avg NUMERIC(4,1),
+
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+
+    source_system VARCHAR(50),
+    record_version INT
+);
+
+
+INSURANCE AGENTS TABLE:
+
+CREATE TABLE insurance_agents (
+    agent_id INT PRIMARY KEY,
+    agent_name VARCHAR(100),
+    license_number VARCHAR(20) UNIQUE,
+
+    region VARCHAR(20),
+    branch_code VARCHAR(10),
+
+    joining_date DATE,
+
+    commission_percentage NUMERIC(5,2),
+    performance_rating NUMERIC(3,2),
+
+    active_flag BOOLEAN,
+    manager_id INT,
+
+    created_at TIMESTAMP
+);
+
+
+
+CUSTOMER ENROLLMENT TABLE:
+
+CREATE TABLE customer_enrollment (
+    customer_policy_id INT PRIMARY KEY,
+    policy_number VARCHAR(20),
+
+    customer_id BIGINT,
+    policy_product_id INT,
+
+    enrollment_date DATE,
+    policy_start_date DATE,
+    policy_end_date DATE,
+    renewal_date DATE,
+
+    policy_status VARCHAR(20),
+    underwriting_status VARCHAR(20),
+
+    payment_mode_preference VARCHAR(20),
+    auto_renew_flag BOOLEAN,
+
+    renewal_count INT,
+
+    created_at TIMESTAMP
+);
+
+
+
+HOSPITALS
+
+CREATE TABLE hospitals (
+    hospital_id INT PRIMARY KEY,
+    hospital_name VARCHAR(200),
+
+    hospital_type VARCHAR(50),
+    network_flag BOOLEAN,
+
+    empanelment_date DATE,
+
+    city VARCHAR(100),
+    state VARCHAR(100),
+    region VARCHAR(50),
+
+    bed_capacity INT,
+    rating NUMERIC(2,1),
+
+    average_claim_cost NUMERIC(12,2)
+);
+
+
+
+POLICY DATA TABLE:
+
+CREATE TABLE policy_data (
+    policy_product_id INT PRIMARY KEY,
+    policy_code VARCHAR(20),
+
+    product_name VARCHAR(100),
+    product_category VARCHAR(50),
+
+    plan_type VARCHAR(50),
+    coverage_type VARCHAR(50),
+
+    policy_term_years INT,
+
+    minimum_age INT,
+    maximum_age INT,
+
+    base_premium_amount NUMERIC(12,2),
+    premium_frequency VARCHAR(20),
+
+    coverage_amount NUMERIC(12,2),
+    deductible_amount NUMERIC(12,2),
+
+    co_payment_percentage NUMERIC(5,2),
+    no_claim_bonus_percentage NUMERIC(5,2),
+
+    max_claim_limit_per_year NUMERIC(12,2),
+    lifetime_claim_limit NUMERIC(12,2),
+
+    smoker_loading_percentage NUMERIC(5,2),
+    bmi_loading_threshold NUMERIC(5,2),
+    bmi_loading_percentage NUMERIC(5,2),
+
+    pre_existing_loading_percentage NUMERIC(5,2),
+    pre_existing_waiting_period_months INT,
+
+    maternity_cover_flag BOOLEAN,
+    critical_illness_cover_flag BOOLEAN,
+
+    product_launch_date DATE,
+    product_status VARCHAR(20),
+
+    underwriting_required_flag BOOLEAN,
+
+    created_at TIMESTAMP
+);
